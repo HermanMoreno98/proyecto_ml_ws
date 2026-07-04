@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  ner-api:
+    build: .
+    container_name: fastapi-ner-api
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    volumes:
+      - huggingface_cache:/root/.cache/huggingface
+
+volumes:
+  huggingface_cache:
+    name: ner_model_cache
