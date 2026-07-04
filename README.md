@@ -2,6 +2,7 @@
 Autores: 
 - Franco Lazo Acuña
 - Hernan Paul Moreno 
+
 Este proyecto implementa una API RESTful robusta para el reconocimiento de entidades nombradas (NER) utilizando el modelo pre-entrenado `dslim/bert-base-NER` de Hugging Face. Está diseñado siguiendo buenas prácticas de MLOps, optimizado para ejecución en CPU y empaquetado en contenedores Docker.
 
 ## Cumplimiento de Requisitos
