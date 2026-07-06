@@ -3,17 +3,15 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
-# Instalar uv
-RUN pip install --no-cache-dir uv
+# Actualizar pip y copiar metadatos de dependencias
+RUN python -m pip install --upgrade pip
+COPY pyproject.toml ./
 
-# 1. Copiar tu pyproject.toml (y el uv.lock si ya se generó)
-COPY pyproject.toml uv.lock* ./
+# Instalar PyTorch (CPU) primero
+RUN python -m pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
 
-# 2. Instalar PyTorch (CPU) primero
-RUN uv pip install --system --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
-
-# 3. Instalar el resto de dependencias directamente desde el pyproject.toml
-RUN uv pip install --system --no-cache-dir -r pyproject.toml
+# Instalar dependencias de la aplicación
+RUN python -m pip install --no-cache-dir fastapi pydantic transformers uvicorn
 
 # Copiar el código fuente
 COPY main.py .
