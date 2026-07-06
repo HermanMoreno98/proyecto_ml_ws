@@ -624,7 +624,7 @@ sdist = { url = "https://files.pythonhosted.org/packages/87/d7/0535a28b1f5f24f66
 wheels = [
     { url = "https://files.pythonhosted.org/packages/d8/8e/bb97bb0c71802080bfc8952937d174e49cfc50de5c951dd47b2496f0dcdb/tqdm-4.68.3-py3-none-any.whl", hash = "sha256:39832cc2def2789a6f29df83f172db7416cea70052c0907a57801c5f2fdccb03", size = 78337, upload-time = "2026-06-17T07:36:50.132Z" },
 ]
-
+ 
 [[package]]
 name = "transformers"
 version = "5.13.0"
