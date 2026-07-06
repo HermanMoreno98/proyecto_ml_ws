@@ -19,7 +19,7 @@ La arquitectura de la API garantiza el cumplimiento de los siguientes patrones d
 
 - **Framework Web:** FastAPI
 - **Machine Learning:** Hugging Face `transformers`, PyTorch (CPU-optimized)
-- **Gestión de Paquetes:** `uv` (para construcciones ultrarrápidas)
+- **Gestión de Paquetes:** Pip y `pyproject.toml`
 - **Infraestructura:** Docker y Docker Compose
 
 ## Estructura del Proyecto
@@ -53,6 +53,10 @@ cd proyecto_ml_ws
 ```
 docker compose up -d --build
 ```
+
+## Característica adicional interesante
+
+La API no solo extrae entidades, sino que también devuelve conteos por tipo de entidad y la cantidad de palabras del texto de entrada. Esto permite analizar rápidamente qué tipos de entidades aparecen con mayor frecuencia en cada petición.
 
 ## Uso de la API (Ejemplos)
 
@@ -119,7 +123,29 @@ Response (200 OK):
   "metadata": {
     "model_version": "dslim/bert-base-NER",
     "language": "en",
-    "entities_found": 3
+    "entities_found": 3,
+    "entity_counts": {
+      "PER": 1,
+      "ORG": 1,
+      "LOC": 1
+    },
+    "input_word_count": 10
   }
+}
+```
+
+### Entidades soportadas
+
+También puedes consultar las etiquetas de entidad soportadas por el modelo con:
+
+```
+curl -X 'GET' 'http://localhost:8000/supported-entities'
+```
+
+Respuesta:
+
+```
+{
+  "supported_entity_groups": ["PER", "LOC", "ORG", "MISC"]
 }
 ```
