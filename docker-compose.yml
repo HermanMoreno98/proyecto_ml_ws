@@ -5,7 +5,7 @@ services:
     build: .
     container_name: fastapi-ner-api
     ports:
-      - "8000:8000"
+      - "80:8000"
     restart: unless-stopped
     volumes:
       - huggingface_cache:/root/.cache/huggingface
