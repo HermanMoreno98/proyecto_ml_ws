@@ -10,3 +10,4 @@ dependencies = [
     "transformers>=5.13.0",
     "uvicorn>=0.50.0",
 ]
+ 
