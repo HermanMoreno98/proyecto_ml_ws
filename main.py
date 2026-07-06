@@ -6,7 +6,7 @@ from typing import Any
 from fastapi import FastAPI, HTTPException
 from fastapi.concurrency import run_in_threadpool
 from pydantic import BaseModel, Field
-from transformers import Pipeline, pipeline
+from transformers import AutoModelForTokenClassification, AutoTokenizer, Pipeline, pipeline
 
 logger = logging.getLogger("ner_api")
 logging.basicConfig(
@@ -26,12 +26,21 @@ ml_models: dict[str, Any] = {
 
 def load_ner_pipeline() -> Pipeline:
     """Crea y retorna el pipeline NER usando CPU y caché local."""
+    tokenizer = AutoTokenizer.from_pretrained(
+        NER_MODEL_NAME,
+        cache_dir=HF_CACHE_DIR,
+        use_fast=True,
+    )
+    model = AutoModelForTokenClassification.from_pretrained(
+        NER_MODEL_NAME,
+        cache_dir=HF_CACHE_DIR,
+    )
     return pipeline(
         "ner",
-        model=NER_MODEL_NAME,
+        model=model,
+        tokenizer=tokenizer,
         aggregation_strategy="simple",
         device=-1,
-        cache_dir=HF_CACHE_DIR,
     )
 
 
