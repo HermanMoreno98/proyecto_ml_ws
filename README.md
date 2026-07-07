@@ -44,7 +44,7 @@ Pasos para levantar el servicio
 1. Clonar el repositorio y entrar a la carpeta:
 
 ```
-git clone 
+git clone https://github.com/HermanMoreno98/proyecto_ml_ws
 cd proyecto_ml_ws
 ```
 
